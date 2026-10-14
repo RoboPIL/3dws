@@ -1,2 +1,111 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3DWS: Results</title>
+<style>
+  :root {
+    --fg: #111;
+    --muted: #666;
+    --rule: #e5e5e5;
+    --bg: #fff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 64px 24px 96px; }
 
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .lead { color: var(--muted); margin: 0 0 56px; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--rule); }
+  section:first-of-type { border-top: none; padding-top: 0; }
+  h2 { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+  .desc { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
+  h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
+
+  .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .row + h3 { margin-top: 36px; }
+
+  figure { margin: 0; }
+  video { display: block; width: 100%; height: auto; background: #fff; }
+  figcaption { font-size: 14px; color: var(--fg); margin-top: 8px; text-align: center; }
+
+  @media (max-width: 640px) {
+    main { padding: 40px 16px 64px; }
+    .row { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>3DWS</h1>
+  <p class="lead">Qualitative results.</p>
+
+  <section>
+    <h2>Interactive Multi-View RGB Rendering</h2>
+    <p class="desc">Rendered RGB from multiple viewpoints, driven interactively.</p>
+    <div class="row">
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/cloth_multiview.mp4"></video>
+        <figcaption>Cloth Folding</figcaption>
+      </figure>
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_multiview.mp4"></video>
+        <figcaption>Part Assembly</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Interactive Geometry and Tactile Prediction</h2>
+    <p class="desc">Rendered point clouds with tactile predictions geometrically aligned to the contact surface.</p>
+    <div class="row">
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/rope_particles.mp4"></video>
+        <figcaption>Rope Threading</figcaption>
+      </figure>
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_particles.mp4"></video>
+        <figcaption>Part Assembly</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Open-Loop Policy Evaluation in the World Model</h2>
+    <p class="desc">Policy rollouts are imagined entirely within the world model. Successful and failed rollouts are shown for each task.</p>
+
+    <h3>Part Assembly</h3>
+    <div class="row">
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_success.mp4"></video>
+        <figcaption>Success</figcaption>
+      </figure>
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_failure.mp4"></video>
+        <figcaption>Failure</figcaption>
+      </figure>
+    </div>
+
+    <h3>T Pushing</h3>
+    <div class="row">
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/pusht_success.mp4"></video>
+        <figcaption>Success</figcaption>
+      </figure>
+      <figure>
+        <video autoplay muted loop playsinline preload="metadata" src="videos/pusht_failure.mp4"></video>
+        <figcaption>Failure</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -53,11 +53,11 @@
     <p class="desc">Rendered RGB from multiple viewpoints, driven interactively.</p>
     <div class="row">
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/cloth_multiview.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/cloth_multiview.mp4"></video>
         <figcaption>Cloth Folding</figcaption>
       </figure>
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_multiview.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/assembly_multiview.mp4"></video>
         <figcaption>Part Assembly</figcaption>
       </figure>
     </div>
@@ -68,11 +68,11 @@
     <p class="desc">Rendered point clouds with tactile predictions geometrically aligned to the contact surface.</p>
     <div class="row">
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/rope_particles.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/rope_particles.mp4"></video>
         <figcaption>Rope Threading</figcaption>
       </figure>
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_particles.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/assembly_particles.mp4"></video>
         <figcaption>Part Assembly</figcaption>
       </figure>
     </div>
@@ -85,11 +85,11 @@
     <h3>Part Assembly</h3>
     <div class="row">
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_success.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/assembly_success.mp4"></video>
         <figcaption>Success</figcaption>
       </figure>
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/assembly_failure.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/assembly_failure.mp4"></video>
         <figcaption>Failure</figcaption>
       </figure>
     </div>
@@ -97,15 +97,36 @@
     <h3>T Pushing</h3>
     <div class="row">
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/pusht_success.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/pusht_success.mp4"></video>
         <figcaption>Success</figcaption>
       </figure>
       <figure>
-        <video autoplay muted loop playsinline preload="metadata" src="videos/pusht_failure.mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" src="videos/pusht_failure.mp4"></video>
         <figcaption>Failure</figcaption>
       </figure>
     </div>
   </section>
 </main>
+<script>
+  // Browsers sometimes refuse to autoplay many videos at once, or pause
+  // the ones that were off-screen when the page loaded. Start each video
+  // as it scrolls into view, and retry everything on first interaction.
+  (function () {
+    var videos = Array.prototype.slice.call(document.querySelectorAll('video'));
+    function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) tryPlay(e.target); });
+      }, { rootMargin: '200px 0px' });
+      videos.forEach(function (v) { io.observe(v); });
+    } else {
+      videos.forEach(tryPlay);
+    }
+    function playAll() { videos.forEach(tryPlay); }
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+      window.addEventListener(ev, playAll, { once: true, passive: true });
+    });
+  })();
+</script>
 </body>
 </html>

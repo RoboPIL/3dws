@@ -21,13 +21,11 @@
   }
   main { max-width: 1080px; margin: 0 auto; padding: 64px 24px 96px; }
 
-  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 8px; }
-  .lead { color: var(--muted); margin: 0 0 56px; }
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 48px; }
 
   section { padding: 40px 0; border-top: 1px solid var(--rule); }
   section:first-of-type { border-top: none; padding-top: 0; }
-  h2 { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
-  .desc { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 0 0 24px; }
   h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
 
   .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
@@ -35,7 +33,8 @@
 
   figure { margin: 0; }
   video { display: block; width: 100%; height: auto; background: #fff; }
-  figcaption { font-size: 14px; color: var(--fg); margin-top: 8px; text-align: center; }
+  figcaption { font-size: 15px; color: var(--fg); margin-top: 8px; text-align: center; }
+  .eval figcaption { font-size: 20px; font-weight: 600; margin-top: 12px; }
 
   @media (max-width: 640px) {
     main { padding: 40px 16px 64px; }
@@ -46,11 +45,9 @@
 <body>
 <main>
   <h1>3DWS</h1>
-  <p class="lead">Qualitative results.</p>
 
   <section>
     <h2>Interactive Multi-View RGB Rendering</h2>
-    <p class="desc">Rendered RGB from multiple viewpoints, driven interactively.</p>
     <div class="row">
       <figure>
         <video autoplay muted loop playsinline preload="auto" src="videos/cloth_multiview.mp4"></video>
@@ -65,7 +62,6 @@
 
   <section>
     <h2>Interactive Geometry and Tactile Prediction</h2>
-    <p class="desc">Rendered point clouds with tactile predictions geometrically aligned to the contact surface.</p>
     <div class="row">
       <figure>
         <video autoplay muted loop playsinline preload="auto" src="videos/rope_particles.mp4"></video>
@@ -78,9 +74,8 @@
     </div>
   </section>
 
-  <section>
+  <section class="eval">
     <h2>Open-Loop Policy Evaluation in the World Model</h2>
-    <p class="desc">Policy rollouts are imagined entirely within the world model. Successful and failed rollouts are shown for each task.</p>
 
     <h3>Part Assembly</h3>
     <div class="row">
